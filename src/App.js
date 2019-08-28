@@ -8,7 +8,7 @@ const APP_ID = '6e21081a';
 const APP_KEY = 'c57e2d06ed57335ecb1393abfa793179';
 
 const [recipes, setRecipts] = useState([]);
-
+const [search, setSearch] = useState('');
 useEffect(() => {
   getRecipe();
   console.log("effect count");
@@ -21,10 +21,14 @@ const getRecipe = async () => {
   setRecipts(data.hits);
 } 
 
+const updateSearch = e => {
+  setSearch(e.target.value);
+  console.log(search);
+}
   return (
     <div className="App">
       <form className="search-form">
-        <input className="search-bar" type='text'></input>
+        <input className="search-bar" type='text' value={search} onChange={updateSearch}></input>
         <button className="search-button" type='submit'>
           search
         </button>
